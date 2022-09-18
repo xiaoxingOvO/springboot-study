@@ -4,7 +4,9 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/storm/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-storm/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-mybatisplus/pom.xml" />
       </list>
     </option>
   </component>
