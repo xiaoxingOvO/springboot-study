@@ -6,7 +6,7 @@
         <option name="generateConfig">
           <GenerateConfig>
             <option name="annotationType" value="MYBATIS_PLUS3" />
-            <option name="basePackage" value="com.xx.mybatis" />
+            <option name="basePackage" value="com.xx.mail" />
             <option name="basePath" value="src/main/java" />
             <option name="classNameStrategy" value="camel" />
             <option name="encoding" value="UTF-8" />
@@ -15,8 +15,8 @@
             <option name="ignoreFieldSuffix" value="" />
             <option name="ignoreTablePrefix" value="" />
             <option name="ignoreTableSuffix" value="" />
-            <option name="moduleName" value="springboot-storm" />
-            <option name="modulePath" value="$PROJECT_DIR$/springboot-mybatisplus" />
+            <option name="moduleName" value="springboot-mail" />
+            <option name="modulePath" value="$PROJECT_DIR$/springboot-mail" />
             <option name="moduleUIInfoList">
               <list>
                 <ModuleInfoGo>
@@ -25,17 +25,8 @@
                   <option name="encoding" value="${domain.encoding}" />
                   <option name="fileName" value="${domain.fileName}Mapper" />
                   <option name="fileNameWithSuffix" value="${domain.fileName}Mapper.java" />
-                  <option name="modulePath" value="$PROJECT_DIR$/springboot-mybatisplus" />
+                  <option name="modulePath" value="$PROJECT_DIR$/springboot-mail" />
                   <option name="packageName" value="${domain.basePackage}.mapper" />
-                </ModuleInfoGo>
-                <ModuleInfoGo>
-                  <option name="basePath" value="src/main/resources" />
-                  <option name="configName" value="mapperXml" />
-                  <option name="encoding" value="${domain.encoding}" />
-                  <option name="fileName" value="${domain.fileName}Mapper" />
-                  <option name="fileNameWithSuffix" value="${domain.fileName}Mapper.xml" />
-                  <option name="modulePath" value="$PROJECT_DIR$/springboot-mybatisplus" />
-                  <option name="packageName" value="mapper" />
                 </ModuleInfoGo>
                 <ModuleInfoGo>
                   <option name="basePath" value="${domain.basePath}" />
@@ -43,7 +34,7 @@
                   <option name="encoding" value="${domain.encoding}" />
                   <option name="fileName" value="${domain.fileName}ServiceImpl" />
                   <option name="fileNameWithSuffix" value="${domain.fileName}ServiceImpl.java" />
-                  <option name="modulePath" value="$PROJECT_DIR$/springboot-mybatisplus" />
+                  <option name="modulePath" value="$PROJECT_DIR$/springboot-mail" />
                   <option name="packageName" value="${domain.basePackage}.service.impl" />
                 </ModuleInfoGo>
                 <ModuleInfoGo>
@@ -52,8 +43,17 @@
                   <option name="encoding" value="${domain.encoding}" />
                   <option name="fileName" value="${domain.fileName}Service" />
                   <option name="fileNameWithSuffix" value="${domain.fileName}Service.java" />
-                  <option name="modulePath" value="$PROJECT_DIR$/springboot-mybatisplus" />
+                  <option name="modulePath" value="$PROJECT_DIR$/springboot-mail" />
                   <option name="packageName" value="${domain.basePackage}.service" />
+                </ModuleInfoGo>
+                <ModuleInfoGo>
+                  <option name="basePath" value="src/main/resources" />
+                  <option name="configName" value="mapperXml" />
+                  <option name="encoding" value="${domain.encoding}" />
+                  <option name="fileName" value="${domain.fileName}Mapper" />
+                  <option name="fileNameWithSuffix" value="${domain.fileName}Mapper.xml" />
+                  <option name="modulePath" value="$PROJECT_DIR$/springboot-mail" />
+                  <option name="packageName" value="mapper" />
                 </ModuleInfoGo>
               </list>
             </option>
@@ -64,15 +64,15 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Test" />
-                  <option name="tableName" value="test" />
+                  <option name="className" value="User" />
+                  <option name="tableName" value="user" />
                 </TableUIInfo>
               </list>
             </option>
             <option name="templatesName" value="mybatis-plus3" />
           </GenerateConfig>
         </option>
-        <option name="moduleName" value="springboot-storm" />
+        <option name="moduleName" value="springboot-mail" />
         <option name="projectPath" value="$PROJECT_DIR$" />
         <option name="templateName" value="mybatis-plus3" />
       </TemplateContext>
