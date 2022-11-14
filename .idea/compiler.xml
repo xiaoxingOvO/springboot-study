@@ -9,6 +9,7 @@
         <module name="springboot-mail" />
         <module name="storm" />
         <module name="springboot-mybatisplus" />
+        <module name="Craw" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -17,6 +18,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Craw" options="-parameters" />
       <module name="springboot-mail" options="-parameters" />
       <module name="springboot-storm" options="-parameters" />
     </option>
