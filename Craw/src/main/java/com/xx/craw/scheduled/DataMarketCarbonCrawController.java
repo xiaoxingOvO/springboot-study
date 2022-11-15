@@ -165,9 +165,9 @@ public class DataMarketCarbonCrawController {
                                     marketTransactionDTO.setDate(LocalDate.parse(day));
                                     marketTransactionDTO.setType(0);
 
-//                                    System.out.println("挂牌交易对象：  " + marketTransactionDTO);
+                                    System.out.println("挂牌交易对象：  " + marketTransactionDTO);
                                     // 插入挂牌交易数据
-                                    marketTransactionService.insertMarketForCraw(marketTransactionDTO);
+//                                    marketTransactionService.insertMarketForCraw(marketTransactionDTO);
 
                                     //获取大宗协议交易，处理第二句
                                     if (strDayDetail[1].contains("成交量") || strDayDetail[1].contains("成交额")) {
@@ -178,8 +178,8 @@ public class DataMarketCarbonCrawController {
                                         marketTransactionDTO1.setType(1);
 
                                         // 插入大宗交易数据
-//                                        System.out.println("大宗交易对象：  "+marketTransactionDTO1);
-                                        marketTransactionService.insertMarketForCraw(marketTransactionDTO1);
+                                        System.out.println("大宗交易对象：  "+marketTransactionDTO1);
+//                                        marketTransactionService.insertMarketForCraw(marketTransactionDTO1);
 
                                     }
                                 }

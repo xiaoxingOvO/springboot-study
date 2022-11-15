@@ -1,15 +1,13 @@
 package com.xx.craw.domain.dto;
 
-import cn.yematech.carbon.basicData.domain.vo.TradeDetailVO;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
+
 
 /**
 * 市场交易详情
@@ -24,13 +22,11 @@ public class MarketTransactionDTO implements Serializable {
     * 日期
     */
     @ApiModelProperty("日期")
-    @NotNull(message="[日期]不能为空")
     private LocalDate date;
     /**
     * 交易类型,0挂牌协议交易,1大宗协议交易
     */
     @ApiModelProperty("交易类型,0挂牌协议交易,1大宗协议交易")
-    @NotNull(message="[交易类型]不能为空")
     private Integer type;
     /**
      * 交易品种,目前只有CEA
@@ -61,13 +57,11 @@ public class MarketTransactionDTO implements Serializable {
     * 成交量(t)
     */
     @ApiModelProperty("成交量(t)")
-    @NotNull(message="[成交量]不能为空")
     private BigDecimal volume;
     /**
     * 成交金额(万元)
     */
     @ApiModelProperty("成交金额(万元)")
-    @NotNull(message="[成交金额]不能为空")
     private BigDecimal turnover;
 
     /**
@@ -102,7 +96,7 @@ public class MarketTransactionDTO implements Serializable {
     /**
      * 每分钟折线图
      */
-    @ApiModelProperty("每分钟折线图")
-    private List<TradeDetailVO> tradeDetailList;
+//    @ApiModelProperty("每分钟折线图")
+//    private List<TradeDetailVO> tradeDetailList;
 
 }
