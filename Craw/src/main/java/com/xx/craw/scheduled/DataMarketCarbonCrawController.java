@@ -1,5 +1,8 @@
 package com.xx.craw.scheduled;
 
+import com.xx.craw.domain.dto.MarketTradeDetailsDTO;
+import com.xx.craw.domain.dto.MarketTransactionDTO;
+import com.xx.craw.service.MarketTransactionService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
@@ -30,7 +33,7 @@ import java.util.stream.Collectors;
 public class DataMarketCarbonCrawController {
 
     @Autowired
-    private IMarketTransactionService marketTransactionService;
+    private MarketTransactionService marketTransactionService;
 
     /**
      * 测试拉取碳交易网页信息
@@ -185,7 +188,7 @@ public class DataMarketCarbonCrawController {
                             return null;
                         } catch (IOException e) {
                             e.printStackTrace();
-                            throw new BizException(e.getMessage());
+                            throw new RuntimeException(e.getMessage());
                         }
                     }).collect(Collectors.toList());
 
