@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <springboot.version>2.7.2</springboot.version>
+        <springboot.version>2.7.3</springboot.version>
         <mybatisplus.version>3.5.2</mybatisplus.version>
         <mysql.version>5.1.44</mysql.version>
     </properties>
@@ -40,6 +40,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${springboot.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.7.3</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
