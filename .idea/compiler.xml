@@ -9,17 +9,21 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-mail" />
         <module name="storm" />
+        <module name="craw" />
         <module name="springboot-mybatisplus" />
-        <module name="Craw" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="carbon" target="1.8" />
+      <module name="Craw" target="1.8" />
       <module name="springboot-storm" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Craw" options="-parameters" />
+      <module name="Craw" options="" />
+      <module name="carbon" options="-parameters" />
+      <module name="craw" options="-parameters" />
       <module name="springboot-mail" options="-parameters" />
       <module name="springboot-storm" options="-parameters" />
     </option>
