@@ -17,6 +17,7 @@
       <module name="carbon" target="1.8" />
       <module name="Craw" target="1.8" />
       <module name="springboot-storm" target="1.8" />
+      <module name="springboot-swagger" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -26,6 +27,7 @@
       <module name="craw" options="-parameters" />
       <module name="springboot-mail" options="-parameters" />
       <module name="springboot-storm" options="-parameters" />
+      <module name="springboot-swagger" options="-parameters" />
     </option>
   </component>
 </project>

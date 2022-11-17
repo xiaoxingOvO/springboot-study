@@ -18,9 +18,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.List;
 
 /**
-* @author xiaoxing
 * @description 针对表【t_market_transaction(市场交易详情表)】的数据库操作Service实现
-* @createDate 2022-11-14 17:59:23
 */
 @Service
 public class MarketTransactionServiceImpl extends ServiceImpl<MarketTransactionMapper, MarketTransaction>

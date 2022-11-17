@@ -10,9 +10,6 @@ import java.time.LocalDate;
 
 /**
  * 市场交易模块详情(分钟)dto数据
- *
- * @Author: zx
- * @Date: 2022/10/31
  */
 @ApiModel("市场交易模块详情dto数据")
 @Data

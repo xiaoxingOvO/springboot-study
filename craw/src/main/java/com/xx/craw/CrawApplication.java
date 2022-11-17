@@ -23,12 +23,18 @@ public class CrawApplication {
         logApplicationStartup(env);
     }
 
+    /**
+     * 打印服务地址
+     * @param env
+     */
     private static void logApplicationStartup(Environment env) {
         String protocol = "http";
         if (env.getProperty("server.ssl.key-store") != null) {
             protocol = "https";
         }
+        //服务端口
         String serverPort = env.getProperty("server.port");
+        //服务名
         String contextPath = env.getProperty("server.servlet.context-path");
         if (StringUtils.isBlank(contextPath)) {
             contextPath = "/";
@@ -43,15 +49,12 @@ public class CrawApplication {
                         "Application '{}' is running! Access URLs:\n\t" +
                         "Local: \t\t{}://localhost:{}{}\n\t" +
                         "External: \t{}://{}:{}{}\n\t" +
+                        "Swagger: \t{}://localhost:{}{}{}\n\t"+
                         "----------------------------------------------------------",
                 env.getProperty("spring.application.name"),
-                protocol,
-                serverPort,
-                contextPath,
-                protocol,
-                hostAddress,
-                serverPort,
-                contextPath);
+                protocol, serverPort, contextPath,
+                protocol, hostAddress, serverPort, contextPath,
+                protocol, serverPort,contextPath, "/doc.html");
     }
 
 }

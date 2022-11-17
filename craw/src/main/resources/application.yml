@@ -1,8 +1,10 @@
 server:
   port: 8080
-#  servlet:
-#    context-path: /carbon
-
+  servlet:
+    context-path: /carbon
+spring:
+  application:
+    name: carbon
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -17,6 +19,7 @@ server:
       pool-name: MyHikariCP
       max-lifetime: 1800000
       connection-timeout: 30000
+
 
 logging:
   level:
