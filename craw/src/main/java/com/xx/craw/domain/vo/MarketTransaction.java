@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 /**
  * 市场交易详情表
- *
+ * @author xiaoxing
  * @TableName t_market_transaction
  */
 @TableName(value = "t_market_transaction")

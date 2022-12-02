@@ -1,9 +1,8 @@
-package com.xx.craw.scheduled;
+package com.xx.craw.util;
 
 import com.xx.craw.domain.dto.MarketTradeDetailsDTO;
 import com.xx.craw.domain.dto.MarketTransactionDTO;
 import com.xx.craw.service.MarketTransactionService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -13,9 +12,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -24,22 +22,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@EnableScheduling
-@Slf4j
+/**
+ * @author xx
+ * @date 2022/12/2
+ */
 @Service
-@Transactional
-public class DataMarketCarbonCrawController {
+public class CarbonUtil {
 
     @Autowired
     private MarketTransactionService marketTransactionService;
 
     /**
-     * 测试拉取碳交易网页信息
-     * @return 反馈
+     * 爬取碳交易每日数据
+     * @return
      */
-
-//    @Scheduled(cron = "0 0 18 * * ?")
-    public ResponseEntity<String> getDailyTransactionData() {
+    public ResponseEntity<String> dailyTransactionData() {
         try {
             for (int i = 1; i < 15; i++) {
                 //1.打开浏览器，HTTPClient对象
@@ -198,8 +195,11 @@ public class DataMarketCarbonCrawController {
         return ResponseEntity.ok(null);
     }
 
-//    @Scheduled(cron = "0 30 17 * * ? ")
-    public ResponseEntity<String> getMarketSituationData() {
+    /**
+     * 爬取碳交易每日每分钟交易数据
+     * @return
+     */
+    public ResponseEntity<String> daylyMinuteMarketData() {
 
         //爬取每分钟市场行情数据
         try {
@@ -253,5 +253,4 @@ public class DataMarketCarbonCrawController {
 
         return ResponseEntity.ok(null);
     }
-
 }
