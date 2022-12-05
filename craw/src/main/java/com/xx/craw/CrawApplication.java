@@ -11,7 +11,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.xx.craw"})
 public class CrawApplication {
 
     private static final Logger log = LoggerFactory.getLogger(CrawApplication.class);

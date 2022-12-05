@@ -1,9 +1,11 @@
 package com.xx.craw.controller;
 
 import com.xx.craw.scheduled.DataMarketCarbonCrawController;
+import com.xx.craw.util.CarbonUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,18 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class CarbonCrawController {
 
     @Autowired
-    DataMarketCarbonCrawController CarbonCrawController;
+    private DataMarketCarbonCrawController CarbonCrawController;
+
+    @Autowired
+    private CarbonUtil carbonUtil;
 
     @ApiOperation("每日交易爬取")
     @GetMapping("/dailyTransactionData")
     public void CarbonCraw(){
-        CarbonCrawController.getDailyTransactionData();
+        carbonUtil.dailyTransactionData();
     }
 
-    @ApiOperation("每日分钟爬取")
+    @ApiOperation("每日分钟交易爬取")
     @GetMapping("/dailyDetailData")
     public void CarbonDetailCraw(){
-        CarbonCrawController.getDailyTransactionData();
+        carbonUtil.daylyMinuteMarketData();
     }
 
 }
