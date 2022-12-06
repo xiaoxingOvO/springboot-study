@@ -6,10 +6,10 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xx.craw.mapper.MarketTradeDetailsMapper;
 import com.xx.craw.mapper.MarketTransactionMapper;
-import com.xx.craw.domain.vo.MarketTradeDetails;
 import com.xx.craw.domain.dto.MarketTradeDetailsDTO;
-import com.xx.craw.domain.vo.MarketTransaction;
+import com.xx.craw.domain.vo.MarketTradeDetailsVO;
 import com.xx.craw.domain.dto.MarketTransactionDTO;
+import com.xx.craw.domain.vo.MarketTransactionVO;
 import com.xx.craw.service.MarketTransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import java.util.List;
 * @description 针对表【t_market_transaction(市场交易详情表)】的数据库操作Service实现
 */
 @Service
-public class MarketTransactionServiceImpl extends ServiceImpl<MarketTransactionMapper, MarketTransaction>
+public class MarketTransactionServiceImpl extends ServiceImpl<MarketTransactionMapper, MarketTransactionDTO>
     implements MarketTransactionService {
 
     @Autowired
@@ -30,84 +30,62 @@ public class MarketTransactionServiceImpl extends ServiceImpl<MarketTransactionM
     private MarketTradeDetailsMapper marketTransactionDetailsMapper;
 
 
+    /**
+     * 更新
+     * @param dto 数据
+     */
     @Override
     public void updateMarket(MarketTransactionDTO dto) {
-        MarketTransaction marketTransaction = new MarketTransaction();
-        marketTransaction.setHighestPrice(dto.getHighestPrice());
-        marketTransaction.setLowestPrice(dto.getLowestPrice());
-        marketTransaction.setOpeningPrice(dto.getOpeningPrice());
-        marketTransaction.setClosingPrice(dto.getClosingPrice());
-        marketTransaction.setDate(dto.getDate());
-        marketTransaction.setType(dto.getType());
-        marketTransaction.setVolume(dto.getVolume());
-        marketTransaction.setTurnover(dto.getTurnover());
-        marketTransaction.setTotalVolume(dto.getTotalVolume());
-        marketTransaction.setTotalTurnover(dto.getTotalTurnover());
-        LambdaUpdateWrapper<MarketTransaction> wrapper = Wrappers
-                .lambdaUpdate(MarketTransaction.class)
-                .eq(MarketTransaction::getDate, dto.getDate())
-                .eq(MarketTransaction::getType, dto.getType());
-        marketTransactionMapper.update(marketTransaction, wrapper);
+        LambdaUpdateWrapper<MarketTransactionDTO> wrapper = Wrappers
+                .lambdaUpdate(MarketTransactionDTO.class)
+                .eq(MarketTransactionDTO::getDate, dto.getDate())
+                .eq(MarketTransactionDTO::getType, dto.getType());
+        marketTransactionMapper.update(dto, wrapper);
     }
 
+    /**
+     * 插入市场交易数据
+     * @param dto 数据
+     * @return
+     */
     @Override
     public String insertMarketForCraw(MarketTransactionDTO dto) {
-        LambdaQueryWrapper<MarketTransaction> eq = Wrappers
-                .lambdaQuery(MarketTransaction.class)
-                .eq(MarketTransaction::getType, dto.getType())
-                .eq(MarketTransaction::getDate, dto.getDate());
-        List<MarketTransaction> list = marketTransactionMapper.selectList(eq);
+        LambdaQueryWrapper<MarketTransactionDTO> eq = Wrappers
+                .lambdaQuery(MarketTransactionDTO.class)
+                .eq(MarketTransactionDTO::getType, dto.getType())
+                .eq(MarketTransactionDTO::getDate, dto.getDate());
+        List<MarketTransactionDTO> list = marketTransactionMapper.selectList(eq);
         if (!CollectionUtils.isEmpty(list)) {
             updateMarket(dto);
-//            throw new BizException("该天已经填入数据，无法重复补录，只能修改");
         }else {
-            MarketTransaction marketTransaction = new MarketTransaction();
-            marketTransaction.setHighestPrice(dto.getHighestPrice());
-            marketTransaction.setLowestPrice(dto.getLowestPrice());
-            marketTransaction.setOpeningPrice(dto.getOpeningPrice());
-            marketTransaction.setClosingPrice(dto.getClosingPrice());
-            marketTransaction.setDate(dto.getDate());
-            marketTransaction.setType(dto.getType());
-            marketTransaction.setVolume(dto.getVolume());
-            marketTransaction.setTurnover(dto.getTurnover());
-            marketTransaction.setTotalVolume(dto.getTotalVolume());
-            marketTransaction.setTotalTurnover(dto.getTotalTurnover());
-            marketTransaction.setTradingVariety(dto.getTradingVariety());
-            marketTransactionMapper.insert(marketTransaction);
+            marketTransactionMapper.insert(dto);
         }
-
         return "成功啦!";
     }
 
-
+    /**
+     * 插入每分钟交易详情
+     * @param dto 日数据具体信息
+     * @return
+     */
     @Override
     public String insertMarketDetailsForCraw(MarketTradeDetailsDTO dto) {
-        LambdaQueryWrapper<MarketTradeDetails> eq = Wrappers
-                .lambdaQuery(MarketTradeDetails.class)
-                .eq(MarketTradeDetails::getDate, dto.getDate())
-                .eq(MarketTradeDetails::getCurrentTime,dto.getCurrentTime());
-        List<MarketTradeDetails> list = marketTransactionDetailsMapper.selectList(eq);
-
-        MarketTradeDetails details = new MarketTradeDetails();
-        details.setCurrentTime(dto.getCurrentTime());
-        details.setLatestPrice(dto.getLatestPrice());
-        details.setVolume(dto.getVolume());
-        details.setTurnover(dto.getTurnover());
-        details.setAvgTradePrice(dto.getAvgTradePrice());
-        details.setQuoteChange(dto.getQuoteChange());
-        details.setDate(dto.getDate());
+        LambdaQueryWrapper<MarketTradeDetailsDTO> eq = Wrappers
+                .lambdaQuery(MarketTradeDetailsDTO.class)
+                .eq(MarketTradeDetailsDTO::getDate, dto.getDate())
+                .eq(MarketTradeDetailsDTO::getCurrentTime,dto.getCurrentTime());
+        List<MarketTradeDetailsDTO> list = marketTransactionDetailsMapper.selectList(eq);
 
         if (!CollectionUtils.isEmpty(list)) {
-            LambdaUpdateWrapper<MarketTradeDetails> wrapper = Wrappers
-                    .lambdaUpdate(MarketTradeDetails.class)
-                    .eq(MarketTradeDetails::getDate, dto.getDate())
-                    .eq(MarketTradeDetails::getCurrentTime,dto.getCurrentTime());
-            marketTransactionDetailsMapper.update(details, wrapper);
-//            throw new BizException("该天已经填入数据，无法重复补录，只能修改");
+            LambdaUpdateWrapper<MarketTradeDetailsDTO> wrapper = Wrappers
+                    .lambdaUpdate(MarketTradeDetailsDTO.class)
+                    .eq(MarketTradeDetailsDTO::getDate, dto.getDate())
+                    .eq(MarketTradeDetailsDTO::getCurrentTime,dto.getCurrentTime());
+            marketTransactionDetailsMapper.update(dto, wrapper);
         }else {
-            marketTransactionDetailsMapper.insert(details);
+            marketTransactionDetailsMapper.insert(dto);
         }
-        return details.getId();
+        return dto.getId();
     }
 
 

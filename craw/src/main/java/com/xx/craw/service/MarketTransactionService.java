@@ -2,13 +2,14 @@ package com.xx.craw.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xx.craw.domain.dto.MarketTradeDetailsDTO;
+import com.xx.craw.domain.vo.MarketTradeDetailsVO;
+import com.xx.craw.domain.vo.MarketTransactionVO;
 import com.xx.craw.domain.dto.MarketTransactionDTO;
-import com.xx.craw.domain.vo.MarketTransaction;
 
 /**
 * @description 针对表【t_market_transaction(市场交易详情表)】的数据库操作Service
 */
-public interface MarketTransactionService extends IService<MarketTransaction> {
+public interface MarketTransactionService extends IService<MarketTransactionDTO> {
 
 
     /**

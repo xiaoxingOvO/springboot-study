@@ -1,21 +1,17 @@
 package com.xx.craw.controller;
 
-import com.xx.craw.scheduled.DataMarketCarbonCrawController;
 import com.xx.craw.util.CarbonUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@Api("爬虫相关接口")
 @RestController
+@RequestMapping("/api/carbonCraw")
+@Api(value = "碳交易数据爬取", tags = "碳交易数据爬取")
 public class CarbonCrawController {
-
-    @Autowired
-    private DataMarketCarbonCrawController CarbonCrawController;
 
     @Autowired
     private CarbonUtil carbonUtil;

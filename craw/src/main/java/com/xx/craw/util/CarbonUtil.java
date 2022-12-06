@@ -41,13 +41,12 @@ public class CarbonUtil {
 
     /**
      * 爬取碳交易每日数据
-     * @return
      */
     public ResponseEntity<String> dailyTransactionData() {
         try {
-//            int pageNum = getPageNum();
-//            log.info("总共有"+pageNum+"页");
-            for (int i = 1; i < 16; i++) {
+            int pageNum = getPageNum();
+            log.info("总共有"+pageNum+"页");
+            for (int i = 1; i < pageNum; i++) {
                 //1.打开浏览器，HTTPClient对象
                 CloseableHttpClient httpClient = HttpClients.createDefault();
                 //2.输入网址,发起get请求创建HTTPGet对象
@@ -116,18 +115,21 @@ public class CarbonUtil {
                                 if (strDayDetail.length == 4) {
                                     // 获取挂牌交易数据
                                     MarketTransactionDTO marketTransactionDTO = getMarketTransactionDTO(day, strDayDetail);
-                                    System.out.println("挂牌交易对象：  " + marketTransactionDTO);
+//                                    System.out.println("挂牌交易对象：  " + marketTransactionDTO);
                                     // 插入挂牌交易数据
-//                                    marketTransactionService.insertMarketForCraw(marketTransactionDTO);
-                                    //获取大宗协议交易
-                                    MarketTransactionDTO marketTransactionDTO2 = getMarketTransactionDTO2(day, strDayDetail);
-                                    // 插入大宗交易数据
-                                    System.out.println("大宗交易对象：  "+marketTransactionDTO2);
-//                                        marketTransactionService.insertMarketForCraw(marketTransactionDTO1);
+                                    String message = marketTransactionService.insertMarketForCraw(marketTransactionDTO);
+                                    log.info("插入挂牌交易数据->"+message);
+
+                                    if (strDayDetail[1].contains("成交量") || strDayDetail[1].contains("成交额")){
+                                        //获取大宗协议交易
+                                        MarketTransactionDTO marketTransactionDTO2 = getMarketTransactionDTO2(day, strDayDetail);
+                                        // 插入大宗交易数据
+                                        String message2 = marketTransactionService.insertMarketForCraw(marketTransactionDTO2);
+                                        log.info("大宗交易数据->"+message2);
+                                    }
                                 }else {
                                     log.info("-------------------第"+day+"爬取失败！！！");
                                 }
-
                             }
                             return null;
                         } catch (IOException e) {
@@ -201,26 +203,25 @@ public class CarbonUtil {
         String[] array = s.toArray(new String[9]);
         MarketTradeDetailsDTO marketTradeDetailsDTO = new MarketTradeDetailsDTO();
         // TODO market_id值的设置
-        marketTradeDetailsDTO.setCurrentTime(array[0]);//当前时间
-        marketTradeDetailsDTO.setDate(LocalDate.now());//日期
-        marketTradeDetailsDTO.setLatestPrice(new BigDecimal(array[1].replace(",", "")));//最新价
-        marketTradeDetailsDTO.setAvgTradePrice(new BigDecimal(array[5].replace(",", "")));//成交均价
-        marketTradeDetailsDTO.setVolume(new BigDecimal(array[6].replace(",", "")));//成交量
-        marketTradeDetailsDTO.setTurnover(new BigDecimal(array[7].replace(",", "")));//成交金额
-        marketTradeDetailsDTO.setQuoteChange(new BigDecimal(StringUtils.stripEnd(array[8], "%\"]")));//涨跌幅
+        marketTradeDetailsDTO.setCurrentTime(array[0]);
+        marketTradeDetailsDTO.setDate(LocalDate.now());
+        marketTradeDetailsDTO.setLatestPrice(new BigDecimal(array[1].replace(",", "")));
+        marketTradeDetailsDTO.setAvgTradePrice(new BigDecimal(array[5].replace(",", "")));
+        marketTradeDetailsDTO.setVolume(new BigDecimal(array[6].replace(",", "")));
+        marketTradeDetailsDTO.setTurnover(new BigDecimal(array[7].replace(",", "")));
+        marketTradeDetailsDTO.setQuoteChange(new BigDecimal(StringUtils.stripEnd(array[8], "%\"]")));
         return marketTradeDetailsDTO;
     }
 
 
     //大宗协议交易
     private MarketTransactionDTO getMarketTransactionDTO2(String day, String[] strDayDetail) {
+
         MarketTransactionDTO marketTransactionDTO = new MarketTransactionDTO();
-        if (strDayDetail[1].contains("成交量") || strDayDetail[1].contains("成交额")) {
-            marketTransactionDTO.setVolume(new BigDecimal(StringUtils.substringBetween(strDayDetail[1], "成交量", "吨").replace(",", "")));
-            marketTransactionDTO.setTurnover(new BigDecimal(StringUtils.substringBetween(strDayDetail[1], "成交额", "元").replace(",", "")));
-            marketTransactionDTO.setDate(LocalDate.parse(day));
-            marketTransactionDTO.setType(1);
-        }
+        marketTransactionDTO.setVolume(new BigDecimal(StringUtils.substringBetween(strDayDetail[1], "成交量", "吨").replace(",", "")));
+        marketTransactionDTO.setTurnover(new BigDecimal(StringUtils.substringBetween(strDayDetail[1], "成交额", "元").replace(",", "")));
+        marketTransactionDTO.setDate(LocalDate.parse(day));
+        marketTransactionDTO.setType(1);
         return marketTransactionDTO;
     }
 
