@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-mail" />
+        <module name="springboot-easyexcel" />
         <module name="storm" />
         <module name="craw" />
         <module name="springboot-mybatisplus" />
@@ -15,16 +16,15 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="carbon" target="1.8" />
-      <module name="Craw" target="1.8" />
       <module name="springboot-storm" target="1.8" />
       <module name="springboot-swagger" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Craw" options="" />
       <module name="carbon" options="-parameters" />
       <module name="craw" options="-parameters" />
+      <module name="springboot-easyexcel" options="-parameters" />
       <module name="springboot-mail" options="-parameters" />
       <module name="springboot-storm" options="-parameters" />
       <module name="springboot-swagger" options="-parameters" />
