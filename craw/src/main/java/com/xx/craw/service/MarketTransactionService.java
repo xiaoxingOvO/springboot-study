@@ -2,8 +2,6 @@ package com.xx.craw.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xx.craw.domain.dto.MarketTradeDetailsDTO;
-import com.xx.craw.domain.vo.MarketTradeDetailsVO;
-import com.xx.craw.domain.vo.MarketTransactionVO;
 import com.xx.craw.domain.dto.MarketTransactionDTO;
 
 /**
