@@ -9,6 +9,8 @@
         <option value="$PROJECT_DIR$/springboot-mail/pom.xml" />
         <option value="$PROJECT_DIR$/craw/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-easyexcel/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-swagger2/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-swagger3/pom.xml" />
       </list>
     </option>
   </component>
