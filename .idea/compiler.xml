@@ -15,6 +15,7 @@
         <module name="springboot-easyexcel" />
         <module name="craw" />
         <module name="springboot-itext" />
+        <module name="springboot-itext5" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +30,7 @@
       <module name="craw" options="-parameters" />
       <module name="springboot-easyexcel" options="-parameters" />
       <module name="springboot-itext" options="-parameters" />
+      <module name="springboot-itext5" options="-parameters" />
       <module name="springboot-mail" options="-parameters" />
       <module name="springboot-storm" options="-parameters" />
       <module name="springboot-swagger" options="-parameters" />
