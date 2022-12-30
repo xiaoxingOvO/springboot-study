@@ -115,17 +115,18 @@ public class CarbonUtil {
                                 if (strDayDetail.length == 4) {
                                     // 获取挂牌交易数据
                                     MarketTransactionDTO marketTransactionDTO = getMarketTransactionDTO(day, strDayDetail);
-//                                    System.out.println("挂牌交易对象：  " + marketTransactionDTO);
+                                    log.info("挂牌交易对象：  " + marketTransactionDTO);
                                     // 插入挂牌交易数据
-                                    String message = marketTransactionService.insertMarketForCraw(marketTransactionDTO);
-                                    log.info("插入挂牌交易数据->"+message);
+//                                    String message = marketTransactionService.insertMarketForCraw(marketTransactionDTO);
+//                                    log.info("插入挂牌交易数据->"+message);
 
                                     if (strDayDetail[1].contains("成交量") || strDayDetail[1].contains("成交额")){
                                         //获取大宗协议交易
                                         MarketTransactionDTO marketTransactionDTO2 = getMarketTransactionDTO2(day, strDayDetail);
+                                        log.info("大宗交易对象：" + marketTransactionDTO2);
                                         // 插入大宗交易数据
-                                        String message2 = marketTransactionService.insertMarketForCraw(marketTransactionDTO2);
-                                        log.info("大宗交易数据->"+message2);
+//                                        String message2 = marketTransactionService.insertMarketForCraw(marketTransactionDTO2);
+//                                        log.info("大宗交易数据->"+message2);
                                     }
                                 }else {
                                     log.info("-------------------第"+day+"爬取失败！！！");
