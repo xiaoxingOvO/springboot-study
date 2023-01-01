@@ -18,16 +18,16 @@ public class StudentUtil {
     private static final Logger log = LoggerFactory.getLogger(StudentUtil.class);
 
     /**
-     * 打印入库单或供货单
+     * 打印excel模板
      * @param response
      * @param studentId
      * @return
      */
-    public static String printStorageOrSupplyPdf(HttpServletResponse response, String studentId) {
+    public static String printPdf(HttpServletResponse response, String studentId) {
         StudentService studentService = SpringUtil.getBean(StudentService.class);
         try {
             Student student = studentService.getStudentById(studentId);
-            return FileUtil.printStorageOrSupplyPdf(response, student);
+            return FileUtil.printPdf(response, student);
 
         } catch (Exception e) {
             log.error(e.getMessage());

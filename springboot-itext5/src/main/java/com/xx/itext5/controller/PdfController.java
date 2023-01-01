@@ -22,9 +22,9 @@ public class PdfController {
      */
     @ApiOperation(value = "打印excel模版", notes = "打印excel模版")
     @GetMapping(value = "/print", produces = "text/html; charset=utf-8")
-    public String supplierStoragePdf(HttpServletResponse response,
+    public String pdf(HttpServletResponse response,
                                      @PathVariable("studentId") String studentId) {
-        return StudentUtil.printStorageOrSupplyPdf(response, studentId);
+        return StudentUtil.printPdf(response, studentId);
     }
 
 }

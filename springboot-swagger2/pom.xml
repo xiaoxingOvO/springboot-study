@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.xx</groupId>
-    <artifactId>swagger2</artifactId>
+    <artifactId>springboot-swagger2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>springboot-swagger2</name>
     <description>springboot-swagger2</description>
