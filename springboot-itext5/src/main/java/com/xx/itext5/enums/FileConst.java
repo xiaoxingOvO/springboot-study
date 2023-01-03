@@ -24,11 +24,11 @@ public class FileConst {
     /**
      * B1 模板
      */
-    public static final String B1 = "B1";
+    public static final String Student = "Student";
     /**
      * B1 模板
      */
-    public static final String B1B8_PATH = "excel/B1".concat(EXCEL_EXTENSION);
+    public static final String Student_PATH = "Student".concat(EXCEL_EXTENSION);
 
 
     /**
