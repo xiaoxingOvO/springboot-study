@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Api(value = "pdf打印预览")
 @RestController
+@RequestMapping("/pdf")
 public class PdfController {
 
     /**
@@ -21,7 +23,7 @@ public class PdfController {
      * @return result
      */
     @ApiOperation(value = "打印excel模版", notes = "打印excel模版")
-    @GetMapping(value = "/print", produces = "text/html; charset=utf-8")
+    @GetMapping(value = "/print/{studentId}", produces = "text/html; charset=utf-8")
     public String pdf(HttpServletResponse response,
                                      @PathVariable("studentId") String studentId) {
         return StudentUtil.printPdf(response, studentId);

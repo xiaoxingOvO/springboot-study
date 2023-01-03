@@ -47,13 +47,6 @@ public class FileConst {
     public static final String TABLE = "table";
     public static final String TABLE_TAG = "</table>";
 
-    public static final String TRANSFER_FORM = "excel/调拨单.xlsx";
-    public static final String STORAGE_FORM = "excel/入库单.xlsx";
-    public static final String BACK_STORAGE_FORM = "excel/退库单.xlsx";
-    public static final String OUT_STORAGE_FORM = "excel/出库单.xlsx";
-    public static final String REJECT_FORM = "excel/退货单.xlsx";
-    public static final String DELIVERY_FORM = "excel/送货单.xlsx";
-
     /**
      * PDF字体
      */
