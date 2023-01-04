@@ -136,6 +136,8 @@ public class pdfDemo {
                 table.addCell(pdfPCell);
 
                 document.add(table);
+                document.newPage();
+
             }
             document.close();
 

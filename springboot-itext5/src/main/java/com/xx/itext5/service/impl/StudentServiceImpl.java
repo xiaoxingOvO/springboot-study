@@ -7,6 +7,8 @@ import com.xx.itext5.mapper.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author xiaoxing
 * @description 针对表【student】的数据库操作Service实现
@@ -23,6 +25,11 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student>
     @Override
     public Student getStudentById(String studentId) {
         return studentMapper.selectById(studentId);
+    }
+
+    @Override
+    public List<Student> getAllStudent() {
+        return studentMapper.selectList(null);
     }
 }
 

@@ -28,7 +28,7 @@ public class FileConst {
     /**
      * B1 模板
      */
-    public static final String Student_PATH = "Student".concat(EXCEL_EXTENSION);
+    public static final String Student_PATH = "excel/Student".concat(EXCEL_EXTENSION);
 
 
     /**

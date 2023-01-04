@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 
 /**
@@ -28,6 +29,27 @@ public class StudentUtil {
         try {
             Student student = studentService.getStudentById(studentId);
             return FileUtil.printPdf(response, student);
+
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            e.printStackTrace();
+            response.reset();
+            return FileConst.SCRIPT_PREFIX
+                    .concat(String.format(FileConst.STRING_FORMAT, e.getMessage()))
+                    .concat(FileConst.SCRIPT_SUFFIX);
+        }
+    }
+
+    /**
+     * 打印excel模板
+     * @param response
+     * @return
+     */
+    public static String printAllPdf(HttpServletResponse response) {
+        StudentService studentService = SpringUtil.getBean(StudentService.class);
+        try {
+            List<Student> student = studentService.getAllStudent();
+            return FileUtil.printAllPdf(response, student);
 
         } catch (Exception e) {
             log.error(e.getMessage());

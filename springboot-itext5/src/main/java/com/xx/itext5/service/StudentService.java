@@ -1,7 +1,9 @@
 package com.xx.itext5.service;
 
-import com.xx.itext5.pojo.Student;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xx.itext5.pojo.Student;
+
+import java.util.List;
 
 /**
 * @author xiaoxing
@@ -11,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface StudentService extends IService<Student> {
 
     Student getStudentById(String studentId);
+
+    List<Student> getAllStudent();
 
 }

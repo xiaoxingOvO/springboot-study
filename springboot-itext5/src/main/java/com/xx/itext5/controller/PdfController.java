@@ -29,4 +29,14 @@ public class PdfController {
         return StudentUtil.printPdf(response, studentId);
     }
 
+    /**
+     * 打印excel模版
+     * @return result
+     */
+    @ApiOperation(value = "打印excel模版", notes = "打印excel模版")
+    @GetMapping(value = "/printAll", produces = "text/html; charset=utf-8")
+    public String allPdf(HttpServletResponse response) {
+        return StudentUtil.printAllPdf(response);
+    }
+
 }
