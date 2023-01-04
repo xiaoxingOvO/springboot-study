@@ -99,15 +99,15 @@ public class PdfTableExcel {
                 PdfPCell pdfpCell = new PdfPCell();
                 pdfpCell.setRight(sheet.getColumnWidthInPixels(cell.getColumnIndex()));
                 pdfpCell.setBackgroundColor(new BaseColor(POIUtil.getRGB(cell.getCellStyle().getFillForegroundColorColor())));
-//                pdfpCell.setVerticalAlignment(getVAlignByExcel(cell.getCellStyle().getVerticalAlignment().getCode()));
-//                pdfpCell.setHorizontalAlignment(getHAlignByExcel(cell.getCellStyle().getAlignment().getCode()));
-                pdfpCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                pdfpCell.setVerticalAlignment(getVAlignByExcel(cell.getCellStyle().getVerticalAlignment().getCode()));
+                pdfpCell.setHorizontalAlignment(getHAlignByExcel(cell.getCellStyle().getAlignment().getCode()));
+//                pdfpCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 //设置单元格内容的位置，前后左右等
-                pdfpCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//                pdfpCell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 if (sheet.getDefaultRowHeightInPoints() != row.getHeightInPoints()) {
                     pdfpCell.setFixedHeight(this.getPixelHeight(row.getHeightInPoints()));
                 }
-                int rowNum = row.getRowNum();
+//                int rowNum = row.getRowNum();
                 //设置编码sheet
 //                if ((rowNum ==0) && (cell.getStringCellValue().contains("B") || cell.getStringCellValue().contains("A"))){
 //                    pdfpCell.setColspan(20);

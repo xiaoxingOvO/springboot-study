@@ -30,13 +30,12 @@ public class FileUtil {
      * @param response   响应对象
      * @param student 学生对象
      */
-    public static String printPdf(HttpServletResponse response, Student student) throws Exception {
+    public static String printPdf(HttpServletResponse response, Student student) {
         try {
             OutputStream output = response.getOutputStream();
             response.reset();
             response.setContentType(FileConst.APPLICATION_PDF);
             // 构建文件名
-//            String fileName = generateStorageOrSupplyFileName(settlement, tripartite);
             String fileName = "studnet信息模版";
             response.setHeader(FileConst.CONTENT_DISPOSITION, FileConst.FILE_NAME + URLEncoder.encode(fileName + FileConst.PDF_EXTENSION, FileConst.UTF_8));
             ExcelUtil.fillExcel2Pdf(new ClassPathResource(FileConst.Student_PATH).getInputStream(),
@@ -58,15 +57,15 @@ public class FileUtil {
      * @param response   响应对象
      * @param student 学生对象
      */
-    public static String printAllPdf(HttpServletResponse response, List<Student> student) throws Exception {
+    public static String printAllPdf(HttpServletResponse response, List<Student> student) {
         try {
             OutputStream output = response.getOutputStream();
             response.reset();
             response.setContentType(FileConst.APPLICATION_PDF);
             // 构建文件名
-//            String fileName = generateStorageOrSupplyFileName(settlement, tripartite);
             String fileName = "studnet信息模版";
-            response.setHeader(FileConst.CONTENT_DISPOSITION, FileConst.FILE_NAME + URLEncoder.encode(fileName + FileConst.PDF_EXTENSION, FileConst.UTF_8));
+            response.setHeader(FileConst.CONTENT_DISPOSITION, FileConst.FILE_NAME +
+                    URLEncoder.encode(fileName + FileConst.PDF_EXTENSION, FileConst.UTF_8));
             ExcelUtil.fillAllExcel2Pdf(new ClassPathResource(FileConst.Student_PATH).getInputStream(),
                     FileConst.SHEET_NAME, getAllStudentExcel(student), output,false);
             output.flush();

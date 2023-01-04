@@ -53,13 +53,12 @@ public class Excel2Pdf extends PdfTool{
         //Multiple ones
         if(this.objects.size() > 1){
 //            toCreateContentIndexes(writer , this.getDocument() , this.objects);
-            //
             for (int i = 0; i < this.objects.size(); i++) {
                 PdfPTable table = this.toCreatePdfTable(this.objects.get(i) , getDocument() , writer);
                 getDocument().add(table);
+                getDocument().newPage();
             }
         }
-        //
         getDocument().close();
     }
 

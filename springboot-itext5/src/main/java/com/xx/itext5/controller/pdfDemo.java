@@ -34,8 +34,9 @@ public class pdfDemo {
             //字体
             Font font2 = new Font(bfComic, 15, Font.NORMAL);
             // 告诉浏览器用什么软件可以打开此文件
-            response.setHeader("content-Type", "application/pdf");
-            response.setCharacterEncoding("utf-8");
+//            response.setHeader("content-Type", "application/pdf");
+//            response.setCharacterEncoding("utf-8");
+            response.setContentType("application/pdf; charset=utf-8");
             // 下载文件的默认名称
             Paragraph par = new Paragraph("这是标题啊" + "\n\n", new Font(bfComic, 18, Font.BOLD));
             //设置局中对齐
@@ -44,8 +45,6 @@ public class pdfDemo {
             Document document = new Document();
             //将纸张设置为A4纸
             document.setPageSize(PageSize.A4);
-            //设置上下左右边距
-            //document.setMargins(35,30,0,0);
             PdfWriter.getInstance(document, response.getOutputStream());
             document.open();
             document.add(par);
@@ -58,14 +57,12 @@ public class pdfDemo {
                 PdfPCell pdfPCell = new PdfPCell();
                 table.setWidths(widths);
 
-
                 pdfPCell = new PdfPCell(new Paragraph("统计日期:" + new Date(), font2));
                 pdfPCell.setVerticalAlignment(Element.ALIGN_LEFT);
                 pdfPCell.setPaddingBottom(20);
                 share(pdfPCell);
                 pdfPCell.setColspan(2);
                 table.addCell(pdfPCell);
-
 
                 pdfPCell = new PdfPCell(new Paragraph("打印日期:" + new Date(), font2));
                 pdfPCell.setHorizontalAlignment(Element.ALIGN_RIGHT);

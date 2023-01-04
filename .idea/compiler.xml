@@ -14,12 +14,12 @@
         <module name="springboot-swagger2" />
         <module name="springboot-easyexcel" />
         <module name="craw" />
-        <module name="springboot-itext" />
         <module name="springboot-itext5" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="carbon" target="1.8" />
+      <module name="springboot-itext" target="1.8" />
       <module name="springboot-storm" target="1.8" />
       <module name="springboot-swagger" target="1.8" />
     </bytecodeTargetLevel>

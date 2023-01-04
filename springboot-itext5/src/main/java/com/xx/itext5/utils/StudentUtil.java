@@ -41,7 +41,7 @@ public class StudentUtil {
     }
 
     /**
-     * 打印excel模板
+     * 批量打印excel模板
      * @param response
      * @return
      */

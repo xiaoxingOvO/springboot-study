@@ -30,10 +30,10 @@ public class PdfController {
     }
 
     /**
-     * 打印excel模版
+     * 批量打印excel模版
      * @return result
      */
-    @ApiOperation(value = "打印excel模版", notes = "打印excel模版")
+    @ApiOperation(value = "批量打印excel模版", notes = "批量打印excel模版")
     @GetMapping(value = "/printAll", produces = "text/html; charset=utf-8")
     public String allPdf(HttpServletResponse response) {
         return StudentUtil.printAllPdf(response);
