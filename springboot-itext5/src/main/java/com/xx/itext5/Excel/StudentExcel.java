@@ -52,7 +52,7 @@ public class StudentExcel {
     /**
      * 备注
      */
-    @ExcelCell(column = "B",row = 4)
+    @ExcelCell(column = "B",row = 5)
     private String bz;
 
 

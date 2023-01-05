@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 
 /**
  * @author xx
@@ -30,112 +29,77 @@ public class pdfDemo {
             BaseFont bfComic = BaseFont.createFont("STSong-Light",
                     "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
             //字体
-            Font font1 = new Font(bfComic, 8, Font.NORMAL);
-            //字体
-            Font font2 = new Font(bfComic, 15, Font.NORMAL);
+            Font font1 = new Font(bfComic, 12, Font.NORMAL);
             // 告诉浏览器用什么软件可以打开此文件
-//            response.setHeader("content-Type", "application/pdf");
-//            response.setCharacterEncoding("utf-8");
             response.setContentType("application/pdf; charset=utf-8");
-            // 下载文件的默认名称
-            Paragraph par = new Paragraph("这是标题啊" + "\n\n", new Font(bfComic, 18, Font.BOLD));
-            //设置局中对齐
-            par.setAlignment(Element.ALIGN_CENTER);
-            PdfPCell pdfPCell19 = new PdfPCell(par);
             Document document = new Document();
             //将纸张设置为A4纸
             document.setPageSize(PageSize.A4);
             PdfWriter.getInstance(document, response.getOutputStream());
             document.open();
+            // 下载文件的默认名称
+            Paragraph par = new Paragraph("这是标题啊" + "\n\n", new Font(bfComic, 18, Font.BOLD));
+            //设置局中对齐
+            par.setAlignment(Element.ALIGN_CENTER);
             document.add(par);
-            //每列宽度
-            int widths[] = {10, 10, 10, 10};
             //列
-            for (int i = 0 ;i < 5;i++){
-                PdfPTable table = new PdfPTable(4);
-                table.setWidthPercentage(98);
-                PdfPCell pdfPCell = new PdfPCell();
-                table.setWidths(widths);
+            PdfPTable table = new PdfPTable(4);
+            PdfPCell pdfPCell;
 
-                pdfPCell = new PdfPCell(new Paragraph("统计日期:" + new Date(), font2));
-                pdfPCell.setVerticalAlignment(Element.ALIGN_LEFT);
-                pdfPCell.setPaddingBottom(20);
-                share(pdfPCell);
-                pdfPCell.setColspan(2);
-                table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("编号", font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            pdfPCell.setRowspan(3);
+            table.addCell(pdfPCell);
 
-                pdfPCell = new PdfPCell(new Paragraph("打印日期:" + new Date(), font2));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_RIGHT);
-                pdfPCell.setPaddingBottom(20);
-                pdfPCell.setPaddingLeft(20);
-                share(pdfPCell);
-                pdfPCell.setColspan(2);
-                table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("姓名", font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            pdfPCell.setRowspan(2);
+            table.addCell(pdfPCell);
 
-                /** 第一行 表头*/
-                pdfPCell = new PdfPCell(new Paragraph("编号", font1));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                pdfPCell.setBorderWidthRight(0);
-                table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("性别", font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            pdfPCell.setRowspan(2);
+            table.addCell(pdfPCell);
 
-                pdfPCell = new PdfPCell(new Paragraph("姓名", font1));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                pdfPCell.setBorderWidthRight(0);
-                pdfPCell.setFixedHeight(20);
-                table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("年龄", font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_CENTER);
+            table.addCell(pdfPCell);
 
-                pdfPCell = new PdfPCell(new Paragraph("性别", font1));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                pdfPCell.setBorderWidthRight(0);
-                pdfPCell.setFixedHeight(20);
-                table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("12", font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setRowspan(3);
+            table.addCell(pdfPCell);
 
-                pdfPCell = new PdfPCell(new Paragraph("年龄", font1));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setFixedHeight(20);
-                table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("3,2",font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_CENTER);
+            table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("3,3",font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_CENTER);
+            table.addCell(pdfPCell);
 
+            pdfPCell = new PdfPCell(new Paragraph("01", font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            table.addCell(pdfPCell);
 
-                /** 添加数据*/
-                pdfPCell = new PdfPCell(new Paragraph("01", font1));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                pdfPCell.setBorderWidthRight(0);
-                pdfPCell.setBorderWidthTop(0);
-                table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("张三", font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            table.addCell(pdfPCell);
 
-                pdfPCell = new PdfPCell(new Paragraph("张三", font1));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                pdfPCell.setBorderWidthRight(0);
-                pdfPCell.setBorderWidthTop(0);
-                pdfPCell.setFixedHeight(20);
-                table.addCell(pdfPCell);
+            pdfPCell = new PdfPCell(new Paragraph("男", font1));
+            pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            table.addCell(pdfPCell);
 
-                pdfPCell = new PdfPCell(new Paragraph("男", font1));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                pdfPCell.setBorderWidthRight(0);
-                pdfPCell.setBorderWidthTop(0);
-                pdfPCell.setFixedHeight(20);
-                table.addCell(pdfPCell);
-
-                pdfPCell = new PdfPCell(new Paragraph("12", font1));
-                pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setVerticalAlignment(Element.ALIGN_CENTER);
-                pdfPCell.setFixedHeight(20);
-                pdfPCell.setBorderWidthTop(0);
-                table.addCell(pdfPCell);
-
-                document.add(table);
-                document.newPage();
-
-            }
+            document.add(table);
             document.close();
 
         } catch (Exception e) {

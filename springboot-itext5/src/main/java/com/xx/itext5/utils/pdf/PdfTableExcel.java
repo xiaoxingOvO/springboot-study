@@ -107,21 +107,11 @@ public class PdfTableExcel {
                 if (sheet.getDefaultRowHeightInPoints() != row.getHeightInPoints()) {
                     pdfpCell.setFixedHeight(this.getPixelHeight(row.getHeightInPoints()));
                 }
-//                int rowNum = row.getRowNum();
-                //设置编码sheet
-//                if ((rowNum ==0) && (cell.getStringCellValue().contains("B") || cell.getStringCellValue().contains("A"))){
-//                    pdfpCell.setColspan(20);
-//                    pdfpCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-//                }
-//                if ((rowNum ==0) && (cell.getStringCellValue().contains("G") || cell.getStringCellValue().contains("R"))){
-//                    pdfpCell.setColspan(9);
-//                    pdfpCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-//                }
 
                 //设置第一行第二行字体大小
-//                float size = (rowNum == 0 || rowNum == 1) ? 12 : 8;
-//                pdfpCell.setPhrase(getPhrase(cell, size));
-                pdfpCell.setPhrase(getPhrase(cell, 8));
+                float size = (i == 0) ? 12 : 8;
+                pdfpCell.setPhrase(getPhrase(cell, size));
+//                pdfpCell.setPhrase(getPhrase(cell, 8));
                 addImageByPOICell(pdfpCell, cell, cw);
                 addBorderByExcel(pdfpCell, cell);
                 CellRangeAddress range = getColspanRowspanByExcel(row.getRowNum(), cell.getColumnIndex());
