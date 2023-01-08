@@ -80,6 +80,7 @@ public class PdfTableExcel {
             .orElse(null);
 
         LinkedList<PdfPCell> cells = new LinkedList<>();
+        ArrayList<String> list = new ArrayList<>();
 //        Boolean g1Boolean = false;
         for (int i = 0; i < rows; i++) {
             Row row = sheet.getRow(i);
@@ -89,43 +90,52 @@ public class PdfTableExcel {
             int columns = row.getLastCellNum();
 
             for (int j = 0; j < columns; j++) {
-                Cell cell = row.getCell(j);
 
-                if (cell == null) {
-                    cell = row.createCell(j);
-                }
-                int cw = getPOIColumnWidth(cell);
+                //判断是否跳过
+                if (passCell(i,j,list)){
 
-                PdfPCell pdfpCell = new PdfPCell();
-                pdfpCell.setRight(sheet.getColumnWidthInPixels(cell.getColumnIndex()));
-                pdfpCell.setBackgroundColor(new BaseColor(POIUtil.getRGB(cell.getCellStyle().getFillForegroundColorColor())));
-                pdfpCell.setVerticalAlignment(getVAlignByExcel(cell.getCellStyle().getVerticalAlignment().getCode()));
-                pdfpCell.setHorizontalAlignment(getHAlignByExcel(cell.getCellStyle().getAlignment().getCode()));
+                }else {
+                    Cell cell = row.getCell(j);
+
+                    if (cell == null) {
+                        cell = row.createCell(j);
+                    }
+                    int cw = getPOIColumnWidth(cell);
+
+                    PdfPCell pdfpCell = new PdfPCell();
+                    pdfpCell.setRight(sheet.getColumnWidthInPixels(cell.getColumnIndex()));
+                    pdfpCell.setBackgroundColor(new BaseColor(POIUtil.getRGB(cell.getCellStyle().getFillForegroundColorColor())));
+                    pdfpCell.setVerticalAlignment(getVAlignByExcel(cell.getCellStyle().getVerticalAlignment().getCode()));
+                    pdfpCell.setHorizontalAlignment(getHAlignByExcel(cell.getCellStyle().getAlignment().getCode()));
 //                pdfpCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                //设置单元格内容的位置，前后左右等
+                    //设置单元格内容的位置，前后左右等
 //                pdfpCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                if (sheet.getDefaultRowHeightInPoints() != row.getHeightInPoints()) {
-                    pdfpCell.setFixedHeight(this.getPixelHeight(row.getHeightInPoints()));
-                }
+                    if (sheet.getDefaultRowHeightInPoints() != row.getHeightInPoints()) {
+                        pdfpCell.setFixedHeight(this.getPixelHeight(row.getHeightInPoints()));
+                    }
 
-                //设置第一行第二行字体大小
-                float size = (i == 0) ? 12 : 8;
-                pdfpCell.setPhrase(getPhrase(cell, size));
+                    //设置第一行第二行字体大小
+                    float size = (i == 0) ? 12 : 8;
+                    pdfpCell.setPhrase(getPhrase(cell, size));
 //                pdfpCell.setPhrase(getPhrase(cell, 8));
-                addImageByPOICell(pdfpCell, cell, cw);
-                addBorderByExcel(pdfpCell, cell);
-                CellRangeAddress range = getColspanRowspanByExcel(row.getRowNum(), cell.getColumnIndex());
-                int rowspan = 1;
-                int colspan = 1;
-                if (range != null) {
-                    rowspan = range.getLastRow() - range.getFirstRow() + 1;
-                    colspan = range.getLastColumn() - range.getFirstColumn() + 1;
-                }
-                pdfpCell.setColspan(colspan);
-                pdfpCell.setRowspan(rowspan);
+                    addImageByPOICell(pdfpCell, cell, cw);
+                    addBorderByExcel(pdfpCell, cell);
+                    CellRangeAddress range = getColspanRowspanByExcel(row.getRowNum(), cell.getColumnIndex());
+                    int rowspan = 1;
+                    int colspan = 1;
+                    if (range != null) {
+                        rowspan = range.getLastRow() - range.getFirstRow() + 1;
+                        colspan = range.getLastColumn() - range.getFirstColumn() + 1;
+                    }
+                    pdfpCell.setColspan(colspan);
+                    pdfpCell.setRowspan(rowspan);
 
-                cells.add(pdfpCell);
-                j += colspan - 1;
+                    savePassCell(rowspan,colspan,i,j,list);
+
+
+                    cells.add(pdfpCell);
+                    j += colspan - 1;
+                }
             }
         }
 
@@ -154,6 +164,39 @@ public class PdfTableExcel {
         anchor.setName(this.excelObject.getAnchorName());
         this.setting = true;
         return anchor;
+    }
+
+    /**
+     * 存储某个格子，因为行读取时，会读取到别多行合并的格子
+     * @param rowspan 跨行数
+     * @param colspan 跨列数
+     * @param row 当前行
+     * @param col 当前列
+     * @return
+     */
+    public static void savePassCell(int rowspan, int colspan, int row, int col,ArrayList<String> list){
+        if (rowspan > 1){
+            for (int i = 0; i < rowspan-1; i++){
+                for (int j = 0; j < colspan; j++){
+                    list.add(String.valueOf(row+i+1)+String.valueOf(col+j));
+                }
+            }
+        }
+    }
+
+    /**
+     * 判断是否跳过某个格子，因为行读取时，，会读取到别多行合并的格子
+     * @param row
+     * @param col
+     * @param list
+     * @return
+     */
+    public boolean passCell(int row,int col,ArrayList<String> list){
+        String r = String.valueOf(row)+String.valueOf(col);
+        if (list.contains(r)){
+            return true;
+        }
+        return false;
     }
 
 

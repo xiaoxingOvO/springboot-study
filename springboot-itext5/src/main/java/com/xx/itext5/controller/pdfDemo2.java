@@ -39,61 +39,45 @@ public class pdfDemo2 {
 
         // 跨行跨列表格
         PdfPTable table = new PdfPTable(3); // 3列表格
+
         PdfPCell cell; // 单元格
-        cell = new PdfPCell(new Phrase("row 1; cell 1", getChineseFont()));
-        cell.setRowspan(3);
+//        cell = new PdfPCell(new Phrase("row 1; cell 1", getChineseFont()));
+//        cell.setBackgroundColor(RED);
+//        cell.setRowspan(3);
+        cell = mergeColAndRow("AAAA",getChineseFont(),1,3);
         table.addCell(cell);
-
-        cell = new PdfPCell(new Phrase("row 1; cell 2", getChineseFont()));
-        cell.setRowspan(2);
-        table.addCell(cell);
-
-        cell = new PdfPCell(new Phrase("row 1; cell 3", getChineseFont()));
-        table.addCell(cell);
-
-        cell = new PdfPCell(new Phrase("row 2; cell 3", getChineseFont()));
-        cell.setRowspan(3);
-        table.addCell(cell);
-
-        cell = new PdfPCell(new Phrase("row 3; cell 2", getChineseFont()));
-        table.addCell(cell);
-
-        cell = new PdfPCell(new Phrase("row 4; cell 1", getChineseFont()));
-        table.addCell(cell);
-
-        cell = new PdfPCell(new Phrase("row 4; cell 2", getChineseFont()));
-        table.addCell(cell);
-
 
 //        cell = new PdfPCell(new Phrase("row 1; cell 2", getChineseFont()));
 //        cell.setRowspan(2);
-//        table.addCell(cell);
-//
+//        cell.setBackgroundColor(RED);
+        cell = mergeColAndRow("BBBB",getChineseFont(),1,2);
+        table.addCell(cell);
+
 //        cell = new PdfPCell(new Phrase("row 1; cell 3", getChineseFont()));
-//        cell.setRowspan(2);
-//        table.addCell(cell);
-//
-//        cell = new PdfPCell(new Phrase("row 1; cell 4", getChineseFont()));
-//        table.addCell(cell);
-//
-//        cell = new PdfPCell(new Phrase("row 2; cell 4",getChineseFont()));
-//        cell.setRowspan(2);
-//        table.addCell(cell);
+//        cell.setBackgroundColor(RED);
+        cell = mergeColAndRow("CCCC",getChineseFont(),1,1);
+        table.addCell(cell);
 
-//        cell = new PdfPCell(new Phrase("跨2行", getChineseFont()));
-//        cell.setRowspan(2);// 跨2行
+//        cell = new PdfPCell(new Phrase("row 2; cell 3", getChineseFont()));
+//        cell.setBackgroundColor(RED);
+//        cell.setRowspan(3);
+        cell = mergeColAndRow("DDDD",getChineseFont(),1,3);
+        table.addCell(cell);
 
-//        table.addCell(cell);
 //        cell = new PdfPCell(new Phrase("row 3; cell 2", getChineseFont()));
-//        table.addCell(cell);
-//        cell = new PdfPCell(new Phrase("row 3; cell 3", getChineseFont()));
-//        table.addCell(cell);
+//        cell.setBackgroundColor(RED);
+        cell = mergeColAndRow("EEEE",getChineseFont(),1,1);
+        table.addCell(cell);
+
 //        cell = new PdfPCell(new Phrase("row 4; cell 1", getChineseFont()));
-//        table.addCell(cell);
+//        cell.setBackgroundColor(RED);
+        cell = mergeColAndRow("FFFF",getChineseFont(),1,1);
+        table.addCell(cell);
+
 //        cell = new PdfPCell(new Phrase("row 4; cell 2", getChineseFont()));
-//        table.addCell(cell);
-//        cell = new PdfPCell(new Phrase("row 4; cell 3", getChineseFont()));
-//        table.addCell(cell);
+//        cell.setBackgroundColor(RED);
+        cell = mergeColAndRow("GGGG",getChineseFont(),1,1);
+        table.addCell(cell);
 
         document.add(table);
         document.close();
@@ -114,5 +98,23 @@ public class pdfDemo2 {
         return fontChinese;
 
     }
+
+
+    /**
+     *
+     * @param str  内容
+     * @param font  字体
+     * @param i 列
+     * @param j 行
+     * @return cell
+     */
+     public static PdfPCell mergeColAndRow(String str, Font font, int i, int j) {
+     PdfPCell cell = new PdfPCell(new Paragraph(str, font));
+     cell.setMinimumHeight(25); cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+     cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+     cell.setColspan(i);
+     cell.setRowspan(j);
+     return cell;
+     }
 
 }
