@@ -34,9 +34,13 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
+                //页面标题
                 .title("swagger2 RestFul APIs")
+                //描述
                 .description("swagger2接口文档")
+                //创建人
                 .contact(new Contact("xx", "http://blog.csdn.net", "xx@email.com"))
+                //版本
                 .version("1.0")
                 .build();
     }
